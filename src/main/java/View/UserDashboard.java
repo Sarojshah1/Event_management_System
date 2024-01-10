@@ -3,35 +3,37 @@ package View;
 
 import ViewComponent.DefaultForm;
 import Menu.MenuEvent;
+import ViewComponent.Calander;
 import ViewComponent.Home_Screen;
 import ViewComponent.HostEvent;
+import ViewComponent.Ticket;
+import ViewComponent.UserProfile;
 import java.awt.Component;
 
 
 public class UserDashboard extends javax.swing.JFrame {
 
-   
-    public UserDashboard() {
+    // make userid
+    public UserDashboard() { // ask for userid and pass in event
         initComponents();
-        userMenu1.setEvent(new MenuEvent() {
-            
-            @Override
-            public void selected(int index, int subIndex) {
-              
-                switch (index){
-                    case 0 -> showForm(new HostEvent());
-                    case 1 -> showForm(new Home_Screen());
-                    default -> showForm(new DefaultForm("Form : " + index + " " + subIndex));
+        userMenu1.setEvent((int index, int subIndex) -> {
+            switch (index){
                 
+                case 0 -> showForm(new Home_Screen());
+                case 1 -> showForm(new HostEvent());
+                case 2 -> showForm(new Ticket());
+                case 3 -> showForm(new Calander());
+                case 4->showForm(new UserProfile());
+                case 5 ->{
+                    LoginPage Login=new LoginPage();
+                    Login.setVisible(true);
+                    Login.pack();
+                    Login.setLocationRelativeTo(null);
+                    dispose();
+//                    Dashboarddispose();
                 }
-
+                default -> showForm(new DefaultForm("Form : " + index + " " + subIndex));
                 
-           
-                
-                            }
-
-            private void dispose() {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
             }
         });
     }

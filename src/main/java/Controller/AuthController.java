@@ -1,8 +1,7 @@
 
 package Controller;
 
-import DAO.Event;
-import Model.EventsModel;
+import Model.AllId;
 import View.Dashboard;
 import View.UserDashboard;
 import database.DatabaseConnection;
@@ -40,14 +39,12 @@ public class AuthController extends DatabaseConnection  {
 
         if (resultSet.next()) {
             int adminId = resultSet.getInt("ID");
-            Event id=new Event();
-            id.setUserid(adminId);
-             id.setConnection(connection);
+            AllId.userId=adminId;
             Dashboard dash = new Dashboard();
             dash.setVisible(true);
             dash.pack();
             dash.setLocationRelativeTo(null);
-            System.out.println("Admin ID: " + adminId);
+            System.out.println("Admin ID: " + AllId.userId);
         } else {
             // Query for User
             String userQuery = "SELECT * FROM credentials WHERE Email=? AND password=? AND role='User'";
@@ -58,13 +55,12 @@ public class AuthController extends DatabaseConnection  {
 
             if (resultSet.next()) {
                 int userId = resultSet.getInt("ID");
-                EventsModel model=new EventsModel(userId);
-                
+                AllId.userId=userId;
                 UserDashboard dash1 = new UserDashboard();
                 dash1.setVisible(true);
                 dash1.pack();
                 dash1.setLocationRelativeTo(null);
-                System.out.println("User ID: " + userId);
+                System.out.println("User ID: " + AllId.userId);
                 
             } else {
                 System.out.println("Invalid credentials");

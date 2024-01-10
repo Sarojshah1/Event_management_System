@@ -6,7 +6,9 @@ import ViewComponent.HomeForm;
 import Menu.MenuEvent;
 import ViewComponent.AddVenue;
 import ViewComponent.Booking;
+import ViewComponent.Calander;
 import ViewComponent.EventDetails;
+import ViewComponent.Report;
 import ViewComponent.venuedetails;
 import java.awt.Component;
 
@@ -23,6 +25,7 @@ public class Dashboard extends javax.swing.JFrame {
                 
                 switch (index) {
                     case 0 -> showForm(new HomeForm());
+                    case 1 -> showForm(new Report());
                     case 2-> showForm(new Booking());
                     case 3 -> {
                         if(subIndex==2){
@@ -33,23 +36,21 @@ public class Dashboard extends javax.swing.JFrame {
                         }
                     }
                     case 4 -> showForm(new EventDetails());                 
-                   
-                       case 5->{
+                   case 5 ->showForm(new Calander());
+                       case 6->{
                            LoginPage Login=new LoginPage();
                            Login.setVisible(true);
                            Login.pack();
                            Login.setLocationRelativeTo(null);
-                           this.dispose();
-//                    Dashboard.dispose();
+                           dispose();
+//                    Dashboarddispose();
                        }
                        default -> showForm(new DefaultForm("Form : " + index + " " + subIndex));
                 }
 //                    case 4, 1-> showForm(new EventDetails());
                             }
 
-            private void dispose() {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-            }
+           
         });
     }
 
